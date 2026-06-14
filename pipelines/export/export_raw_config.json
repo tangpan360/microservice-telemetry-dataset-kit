@@ -1,0 +1,34 @@
+{
+  "prom": {
+    "enabled": true,
+    "url": "",
+    "namespace": "ob",
+    "metadata": {
+      "run_id": "",
+      "scenario_id": ""
+    },
+    "rate_window": "1m",
+    "interval_minutes": 10,
+    "bootstrap_minutes": 10,
+    "lag_minutes": 2,
+    "overlap_minutes": 1,
+    "step_s": 60,
+    "timeout_s": 60
+  },
+  "jaeger": {
+    "enabled": true,
+    "url": "",
+    "service": "frontend.ob",
+    "metadata": {
+      "run_id": "",
+      "scenario_id": ""
+    },
+    "interval_minutes": 5,
+    "bootstrap_minutes": 5,
+    "lag_minutes": 5,
+    "overlap_minutes": 1,
+    "slice_minutes": 1,
+    "limit": 10000,
+    "timeout_s": 180
+  }
+}

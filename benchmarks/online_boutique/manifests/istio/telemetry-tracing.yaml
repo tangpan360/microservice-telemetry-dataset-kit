@@ -1,0 +1,19 @@
+apiVersion: telemetry.istio.io/v1
+kind: Telemetry
+metadata:
+  name: mesh-tracing
+  namespace: istio-system
+spec:
+  tracing:
+  - providers:
+    - name: otel-tracing
+    randomSamplingPercentage: 1.0
+    customTags:
+      run_id:
+        header:
+          name: x-run-id
+          defaultValue: unknown
+      scenario_id:
+        header:
+          name: x-scenario-id
+          defaultValue: unknown

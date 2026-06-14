@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: jaeger
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  namespaceSelector:
+    matchNames:
+    - observability
+  selector:
+    matchLabels:
+      app: jaeger
+  podMetricsEndpoints:
+  - port: admin
+    path: /metrics
+    interval: 30s

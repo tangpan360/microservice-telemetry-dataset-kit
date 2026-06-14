@@ -1,0 +1,18 @@
+prometheus:
+  prometheusSpec:
+    retention: 30d
+    # keep 30d; size cap left unset for simplicity
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: standard
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 2Ti
+
+grafana:
+  enabled: true
+
+alertmanager:
+  enabled: true

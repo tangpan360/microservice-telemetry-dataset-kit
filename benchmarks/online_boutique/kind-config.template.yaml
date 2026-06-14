@@ -1,0 +1,28 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: ob
+containerdConfigPatches:
+- |-
+  [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
+    endpoint = ["https://docker.m.daocloud.io", "https://docker.1ms.run"]
+nodes:
+- role: control-plane
+  extraMounts:
+  # NOTE: kind requires hostPath to be an absolute path on the host machine.
+  # This repo uses a placeholder here and generates a real config at runtime.
+  # See: benchmarks/online_boutique/scripts/generate_kind_config.py
+  - hostPath: __KIND_OB_VOLUMES_HOST_PATH__
+    containerPath: /var/local-path-provisioner
+  extraPortMappings:
+  - containerPort: 30081
+    hostPort: 18081
+    protocol: TCP
+- role: worker
+  extraMounts:
+  - hostPath: __KIND_OB_VOLUMES_HOST_PATH__
+    containerPath: /var/local-path-provisioner
+- role: worker
+  extraMounts:
+  - hostPath: __KIND_OB_VOLUMES_HOST_PATH__
+    containerPath: /var/local-path-provisioner
+
